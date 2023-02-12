@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #f9f9f9;
+  }
+}
+
+@layer components {
+  .container__hero {
+    width: 100%;
+    height: 100%;
+  }
+
+  .section__hero {
+    width: 100%;
+    height: 100%;
+    background-image: url("./assets/taller.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .t-input {
+    @apply rounded-lg 
+        border-transparent 
+        flex-1 
+        appearance-none 
+        border 
+        border-gray-300 
+        w-full 
+        py-2 px-4 
+        bg-white 
+        text-gray-700 
+        placeholder-gray-400 
+        shadow-sm 
+        text-base 
+        focus:outline-none 
+        focus:ring-2 
+        focus:ring-blue-800 
+        focus:border-transparent;
+  }
+
+  .logo__icono {
+    transform: scale(0);
+    animation: rotate 5s 0.5s alternate forwards;
+  }
+
+  .t-button {
+    @apply
+    rounded-md 
+    bg-blue-900 
+    px-3.5 
+    py-2 
+    text-base 
+    font-semibold 
+    leading-7 
+    text-white 
+    shadow-sm 
+    hover:bg-blue-800 
+    focus-visible:outline 
+    focus-visible:outline-2 
+    focus-visible:outline-offset-2 
+    focus-visible:outline-indigo-600
+  }
+
+  .t-label {
+    @apply
+    relative 
+    cursor-pointer 
+    rounded-md 
+    bg-white font-medium 
+    text-indigo-600 
+    focus-within:outline-none 
+    focus-within:ring-2 
+    focus-within:ring-indigo-500 
+    focus-within:ring-offset-2 
+    hover:text-indigo-500
+  }
+
+  .container__input-file {
+    @apply
+    mt-1 
+    flex 
+    justify-center 
+    rounded-md 
+    border-2 
+    border-dashed 
+    border-gray-300 
+    px-6 pt-5 pb-6
+  }
+
+  .spinner,.spinner:after{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+ }
+
+.spinner {
+    background-color: transparent;
+    border-top: 5px solid rgb(30,64,175);
+    border-right: 5px solid rgb(30,64,175);
+    border-bottom: 5px solid rgb(30,64,175);
+    border-left: 5px solid rgba(30,64,175,.2);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: .8s;
+    animation-name: spinner-loading
+  }
+}
+
+@keyframes spinner-loading{
+  0% {
+      transform: rotate(0deg)
+  } to {
+      transform: rotate(1turn)
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .container__hero {
+    display: none;
+  }
+}

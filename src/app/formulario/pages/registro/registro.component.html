@@ -1,0 +1,272 @@
+<div class="w-11/12 mx-auto my-8 text-center">
+  <h2 class="text-gray-600 text-4xl">Ingresa tus datos</h2>
+  <form
+    class="grid grid-cols-1 grid-rows-5 gap-5 mt-8"
+    [formGroup]="miFormulario"
+    (submit)="enviar()"
+  >
+    <div class="text-start flex gap-5 justify-between">
+      <div class="w-full">
+        <label for="required-nombre" class="text-gray-700">
+          Nombre
+          <span class="text-red-500"> * </span>
+        </label>
+        <input
+          type="text"
+          id="required-nombre"
+          class="t-input"
+          formControlName="nombre"
+          placeholder="Ingresa tu nombre"
+        />
+        <span class="text-sm text-red-400" *ngIf="formInvalid('nombre')"
+          >Debes ingresar tu nombre</span
+        >
+      </div>
+      <div class="w-full">
+        <label for="required-apellido" class="text-gray-700">
+          Apellido
+          <span class="text-red-500"> * </span>
+        </label>
+        <input
+          type="text"
+          id="required-apellido"
+          class="t-input"
+          formControlName="apellido"
+          placeholder="Ingresa tu apellido"
+        />
+        <span class="text-sm text-red-400" *ngIf="formInvalid('apellido')"
+          >Debes ingresar tu apellido</span
+        >
+      </div>
+    </div>
+
+    <div class="text-start flex gap-5 justify-between">
+      <div class="w-full">
+        <label for="required-rut" class="text-gray-700">
+          Rut
+          <span class="text-red-500"> * </span>
+        </label>
+        <input
+          type="number"
+          id="required-rut"
+          class="t-input"
+          formControlName="rut"
+          placeholder="Ingresa el rut"
+        />
+        <span class="text-sm text-red-400" *ngIf="formInvalid('rut')"
+          >ingresa tu rut, sin puntos ni guión</span
+        >
+      </div>
+      <div class="w-full">
+        <label for="required-telefono" class="text-gray-700">
+          Teléfono
+          <span class="text-red-500"> * </span>
+        </label>
+        <input
+          type="number"
+          id="required-telefono"
+          class="t-input"
+          formControlName="telefono"
+          placeholder="Ingrese telefono"
+        />
+        <span class="text-sm text-red-400" *ngIf="formInvalid('telefono')"
+          >Ingresa un numero de teléfono</span
+        >
+      </div>
+    </div>
+
+    <div class="text-start">
+      <label for="required-email" class="text-gray-700">
+        Email
+        <span class="text-red-500"> * </span>
+      </label>
+      <input
+        type="email"
+        id="required-email"
+        class="t-input"
+        formControlName="email"
+        placeholder="Ingresa tu email"
+      />
+      <span class="text-sm text-red-400" *ngIf="formInvalid('email')"
+        >Ingresa tu correo electrónico</span
+      >
+    </div>
+
+    <div class="text-start">
+      <label for="required-direccion" class="text-gray-700">
+        Dirección
+        <span class="text-red-500"> * </span>
+      </label>
+      <input
+        type="text"
+        id="required-direccion"
+        class="t-input"
+        formControlName="direccion"
+        placeholder="Ingresa tu dirección"
+      />
+      <span class="text-sm text-red-400" *ngIf="formInvalid('direccion')"
+        >Ingresa tu dirección</span
+      >
+    </div>
+
+    <div class="text-start flex gap-5 justify-between">
+      <div class="w-full">
+        <label for="required-ciudad" class="text-gray-700">
+          Comuna
+          <span class="text-red-500"> * </span>
+        </label>
+        <input
+          type="text"
+          id="required-ciudad"
+          class="t-input"
+          formControlName="comuna"
+          placeholder="Ingresa la comuna"
+        />
+        <span class="text-sm text-red-400" *ngIf="formInvalid('comuna')"
+          >Ingresa tu comuna</span
+        >
+      </div>
+      <div class="w-full">
+        <label for="required-provincia" class="text-gray-700">
+          Provincia
+          <span class="text-red-500"> * </span>
+        </label>
+        <input
+          type="text"
+          id="required-telefono"
+          class="t-input"
+          formControlName="provincia"
+          placeholder="Santiago"
+        />
+        <span class="text-sm text-red-400" *ngIf="formInvalid('provincia')"
+          >Ingresa la región</span
+        >
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <div class="flex-1">
+        <label class="block text-sm font-medium text-gray-700"
+          >Sube tu carnet (frente)</label
+        >
+        <div
+          class="container__input-file"
+        >
+          <div class="space-y-1 text-center">
+            <app-carnet-svg/>
+            <div class="flex justify-center text-sm text-gray-600">
+              <label
+                for="file-upload"
+                class="t-label"
+              >
+                <span>Subir archivo</span>
+                <input
+                  id="file-upload"
+                  name="file-upload"
+                  type="file"
+                  class="sr-only"
+                  accept=".jpg, .jpeg, .png"
+                  formControlName="unloadImage"
+                  (change)="uploadImage($event)"
+                />
+              </label>
+            </div>
+            <p
+              class="text-xs text-gray-500"
+              *ngIf="miFormulario.controls['unloadImage'].invalid; else archivo"
+            >
+              JPG, JPEG, PNG, tamaño maximo 5MB
+            </p>
+            <ng-template #archivo>
+              <p class="text-xs text-gray-500">{{miFormulario.controls['unloadImage'].value}}</p>
+            </ng-template>
+          </div>
+        </div>
+        <span class="text-sm text-red-400" *ngIf="formInvalid('unloadImage')"
+          >Debes subir el frente de tu carnet</span
+        >
+      </div>
+
+      <div class="flex-1">
+        <label class="block text-sm font-medium text-gray-700"
+          >Sube tu carnet (reverso)</label
+        >
+        <div
+          class="container__input-file"
+        >
+          <div class="space-y-1 text-center">
+           <app-carnet-svg/>
+            <div class="flex justify-center text-sm text-gray-600">
+              <label
+                for="file-upload2"
+                class="t-label"
+              >
+                <span>Subir archivo</span>
+                <input
+                  id="file-upload2"
+                  name="file-upload"
+                  type="file"
+                  class="sr-only"
+                  accept=".jpg, .jpeg, .png"
+                  formControlName="unloadImage2"
+                  (change)="uploadImage($event)"
+                />
+              </label>
+            </div>
+            <p class="text-xs text-gray-500" *ngIf="miFormulario.controls['unloadImage2'].invalid; else archivo2">
+              JPG, JPEG, PNG, tamaño maximo 5MB
+            </p>
+            <ng-template #archivo2>
+              <p class="text-xs text-gray-500">{{miFormulario.controls['unloadImage2'].value}}</p>
+            </ng-template>
+          </div>
+        </div>
+        <span class="text-sm text-red-400" *ngIf="formInvalid('unloadImage2')"
+          >Debes subir el reverso de tu carnet</span
+        >
+      </div>
+    </div>
+
+    <div class="flex-1">
+      <label class="block text-sm font-medium text-gray-700"
+        >Sube tu currículo</label
+      >
+      <div
+        class="container__input-file"
+      >
+        <div class="space-y-1 text-center">
+          <app-carnet-svg/>
+          <div class="flex justify-center text-sm text-gray-600">
+            <label
+              for="file-upload3"
+              class="t-label"
+            >
+              <span>Subir archivo</span>
+              <input
+                id="file-upload3"
+                name="file-upload"
+                type="file"
+                class="sr-only"
+                accept=".pdf, .docx"
+                formControlName="unloadImage3"
+              />
+            </label>
+          </div>
+          <p class="text-xs text-gray-500">PDF, DOCX tamaño maximo 10MB</p>
+        </div>
+      </div>
+      <span class="text-sm text-red-400" *ngIf="formInvalid('unloadImage3')"
+        >Debes subir tu currículo</span
+      >
+    </div>
+
+    <div class="text-center">
+      <button
+        class="t-button"
+        type="submit"
+      >
+        Enviar
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,17 @@
+<div class="w-11/12 h-full grid grid-cols-1 place-content-center mx-auto">
+    <figure class="mx-auto">
+        <img src="/assets/logo.png" alt="logo empresarial mf-repair">
+    </figure>
+    <div>
+        <p class="leading-8 text-gray-600 text-lg">
+            ¿Estás buscando un nuevo desafío en el campo de la mecánica? ¡Únete a nuestro equipo en MF REPAIR! Somos un taller mecánico dedicado a brindar un servicio de alta calidad a nuestros clientes. Ofrecemos un paquete de compensación competitivo, un ambiente de trabajo positivo y oportunidades de crecimiento profesional. ¡Regístrate en nuestra página web y envía tu solicitud de empleo hoy mismo! Estamos emocionados de tenerte en nuestro equipo.
+        </p>
+    </div>
+    <br>
+    <div class="flex text-center justify-center">
+        <button (click)="login()" *ngIf="!toggleButton; else spinner" class="t-button">Registrarse</button>
+        <ng-template #spinner>
+            <span class="spinner"></span>
+        </ng-template>
+    </div>
+</div>
